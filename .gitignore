@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# Environment variables (VERY IMPORTANT)
+.env
+
+# MySQL / Docker data
+mysql_data/
+*.db
+
+# Logs
+*.log
+
+# Android
+.gradle/
+build/
+local.properties
+
+# OS files
+.DS_Store
+Thumbs.db
