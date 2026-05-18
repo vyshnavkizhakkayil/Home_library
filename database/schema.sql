@@ -18,6 +18,7 @@ CREATE TABLE users (
     avatar_url    TEXT,
     is_active     BOOLEAN DEFAULT TRUE,
     last_login    TIMESTAMP,
+    updated_at    DATETIME DEFAULT NULL,
     created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -154,6 +155,7 @@ CREATE TABLE user_books (
                    'finished'
                ) DEFAULT 'unread',
     rating     TINYINT CHECK (rating BETWEEN 1 AND 5),
+    updated_at  DATETIME DEFAULT NULL,
     UNIQUE KEY unique_user_book (user_id, book_id),    -- one record per user per book
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
@@ -164,15 +166,16 @@ CREATE TABLE user_books (
 -- ------------------------------------------------------------
 
 CREATE TABLE reading_sessions (
-    id           INT AUTO_INCREMENT PRIMARY KEY,
-    user_id      INT NOT NULL,
-    book_id      INT NOT NULL,
-    start_page   INT NOT NULL,
-    end_page     INT NOT NULL,
-    session_date DATE DEFAULT CURRENT_DATE,
-    notes        TEXT,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
+    id            INT AUTO_INCREMENT PRIMARY KEY,
+    user_books_id INT NOT NULL,
+    user_id       INT NOT NULL,               -- kept for quick lookups without joining user_books
+    pages_read    INT NOT NULL CHECK (pages_read >= 0),
+    started_at    DATETIME NOT NULL,
+    ended_at      DATETIME,                   -- NULL means session still in progress
+    notes         TEXT,
+    created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_books_id) REFERENCES user_books(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id)       REFERENCES users(id)      ON DELETE CASCADE
 );
 
 -- ------------------------------------------------------------
@@ -230,11 +233,11 @@ CREATE TABLE wishlist_authors (
 -- ------------------------------------------------------------
 
 CREATE TABLE deleted_books (
-    id         INT PRIMARY KEY,
-    title      VARCHAR(255),
-    isbn       VARCHAR(20),
-    deleted_by INT,
-    deleted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    id          INT AUTO_INCREMENT PRIMARY KEY,
+    original_id INT NOT NULL,
+    data        JSON NOT NULL,
+    deleted_by  INT,
+    deleted_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (deleted_by) REFERENCES users(id) ON DELETE SET NULL
 );
 
