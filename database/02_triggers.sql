@@ -599,8 +599,8 @@ CREATE TRIGGER trg_log_copies_update
   AFTER UPDATE ON copies FOR EACH ROW
 BEGIN
   CALL sp_log_activity('copies', 'UPDATE', NEW.id, @app_current_user_id,
-    JSON_OBJECT('id', OLD.id, 'book_condition', OLD.book_condition, 'source', OLD.source),
-    JSON_OBJECT('id', NEW.id, 'book_condition', NEW.book_condition, 'source', NEW.source));
+    JSON_OBJECT('id', OLD.id, 'condition', OLD.condition, 'source', OLD.source),
+    JSON_OBJECT('id', NEW.id, 'condition', NEW.condition, 'source', NEW.source));
 END$$
 
 DROP TRIGGER IF EXISTS trg_log_copies_delete$$sh

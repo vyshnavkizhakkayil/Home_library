@@ -1,23 +1,23 @@
-# Python
+# Python / FastAPI
 __pycache__/
 *.pyc
 venv/
-
-# Environment variables (VERY IMPORTANT)
+env/
 .env
 
-# MySQL / Docker data
-mysql_data/
-*.db
+# Docker
+mysql/data/
 
-# Logs
-*.log
-
-# Android
-.gradle/
+# Android / Kotlin
 build/
+.gradle/
 local.properties
+.idea/
+*.iml
 
-# OS files
+# OS generated files
 .DS_Store
 Thumbs.db
+
+# App Specific Data
+images/
