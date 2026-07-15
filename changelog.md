@@ -19,3 +19,8 @@
   - Created `.env` file with MySQL and FastAPI environment variables.
   - Created `.gitignore` file to ignore `.env`, Python cache, and DB data.
   - Created `docker-compose.yml` to run MySQL 8.0 and mount `database/` scripts for automatic initialization on startup.
+- **Git Setup (Step 3)**:
+  - Initialized Git repository.
+  - Configured Git with the user's name and email.
+  - Set remote origin to `https://github.com/vyshnavkizhakkayil/Home_library.git`.
+  - Made the initial commit covering the database schema, Docker setup, and documentation.

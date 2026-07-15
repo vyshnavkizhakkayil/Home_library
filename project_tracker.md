@@ -13,7 +13,7 @@ A personal home library management app for two users (you and your brother) on t
 | ISBN Scanner | CameraX + ML Kit | To do |
 | HTTP Client | Retrofit | To do |
 | Local Cache (Stage 2) | Room (SQLite) | To do (Later) |
-| Backend API | FastAPI (Python) | To do |
+| Backend API | FastAPI (Python) | Completed |
 | Database | MySQL | **Currently Using** |
 | Auth | JWT + bcrypt | To do |
 | Book Data APIs | Google Books API + Open Library API | To do |
@@ -73,26 +73,32 @@ A personal home library management app for two users (you and your brother) on t
 - [x] Run `docker-compose up` and verify MySQL starts with schema loaded automatically
 - [x] Verify data persists in Docker named volume after restart
 
-### 📅 Step 3 — Git Setup
-- [ ] Run `git init` in project root
-- [ ] Create `.gitignore`
-- [ ] Create remote repo on GitHub or GitLab
-- [ ] Initial commit with project structure
+### ✅ Step 3 — Git Setup (Completed)
+- [x] Run `git init` in project root
+- [x] Create `.gitignore`
+- [x] Create remote repo on GitHub or GitLab
+- [x] Initial commit with project structure
 
-### 📅 Step 4 — FastAPI Backend
-- [ ] Set up Python virtual environment
-- [ ] Install dependencies (`fastapi uvicorn mysql-connector-python passlib python-jose python-dotenv`)
-- [ ] Write `database.py` — MySQL connection
-- [ ] Implement Auth endpoints (`/register`, `/login`)
-- [ ] Implement Books, Authors, Copies endpoints
-- [ ] Implement Borrowed, Wishlist, Reading sessions endpoints
-- [ ] Implement Static file serving
-- [ ] Test endpoints at `http://localhost:8000/docs`
+### ✅ Step 4 — FastAPI Backend (Completed)
+- [x] Set up Python virtual environment
+- [x] Install dependencies (`fastapi`, `uvicorn`, `mysql-connector-python`, `passlib`, `python-jose`, `python-dotenv`)
+- [x] Create `backend/requirements.txt`
+- [x] Write `backend/database.py` (MySQL connection)
+- [x] Implement `backend/utils/auth.py`
+- [x] Create Pydantic models in `backend/models/schemas.py`
+- [x] Implement `backend/routers/auth.py` (`/register`, `/login`)
+- [x] Implement `backend/routers/books.py` (includes copies endpoints)
+- [x] Implement `backend/routers/authors.py`
+- [x] Implement `backend/routers/borrowed.py`
+- [x] Implement `backend/routers/wishlist.py`
+- [x] Implement `backend/routers/reading_sessions.py`
+- [x] Implement `backend/main.py` (Entry point and static files)
+- [x] Test endpoints at `http://localhost:8000/docs`
 
 ### 📅 Step 5 — Kotlin Android App
-- [ ] Create Android Studio project
-- [ ] Add dependencies (`Retrofit, Hilt, Room, CameraX, ML Kit, Coil`)
-- [ ] Set up Hilt and Retrofit
+- [x] Create Android Studio project
+- [x] Add dependencies (`Retrofit, Hilt, CameraX, ML Kit, Coil`)
+- [x] Set up Hilt and Retrofit
 - [ ] UI: Login, Home, Book list, Book detail, Add book
 - [ ] Feature: Barcode scanner + ISBN auto-fill
 - [ ] Feature: Borrowed tracker, Wishlist, Reading session logger
